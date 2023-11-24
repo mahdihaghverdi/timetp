@@ -190,3 +190,28 @@ tokenize('4d5w')
   |- the call returns
   |- local tokens: [('days', 4), ('weeks', 5)]
 ```
+
+
+### `parse` - The parser
+```python
+def parse(tokens: list[token]):
+    """Return a `timedelta` object out of the tokens"""
+    _dict = defaultdict(int)
+    for type_, number in tokens:
+        _dict[type_] += number
+
+    return timedelta(**_dict)
+```
+
+Our parser is a nice and little one. 
+
+All it does is that it sums up the homogeneous keys together and then passes it to `timedelta` and returns it
+
+The reason behind the `for` is this:
+
+Consider an input like this: `4d5d5w12d`, what `tokenize` generates it this:
+```
+[('days', 4), ('days', 5), ('weeks', 5), ('days', 4)]
+```
+
+but the right thing is to sum up all days and then pass the kw arg to `timedelta`, this `for` loop does that.
