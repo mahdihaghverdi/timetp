@@ -1,10 +1,22 @@
 from typing import TypeAlias
 
-token: TypeAlias = tuple[int, str]
+token: TypeAlias = tuple[str, int]
 
 
 def tokenize(string: str) -> list[token]:
-    """Tokenize and return a namedtuple of the time string to numbers-letters"""
+    """Tokenize and return a two tuple of the time string
+
+    >>> tokenize('4d5w')
+    [('days', 4) ,('weeks', 5)]
+    """
+    letters = {
+        'd': 'days',
+        'w': 'weeks',
+        'h': 'hours',
+        'm': 'minutes',
+        's': 'seconds'
+    }
+
     string = string.lower()
     tokens: list[token] = []
     if not string:
@@ -32,6 +44,6 @@ def tokenize(string: str) -> list[token]:
     if letter not in list('dwhms'):
         raise SyntaxError("Time convention letters should be one of d, w, h, m or s.")
 
-    tokens.append((int(digits), letter))
+    tokens.append((letters[letter], int(digits)))
     string = string[i + 1:]
     return tokens + tokenize(string)

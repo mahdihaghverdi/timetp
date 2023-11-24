@@ -28,12 +28,12 @@ class TestTokenizer(TestCase):
     def test_one_pair(self):
         time = '4d'
         result = tokenize(time)
-        self.assertEqual(result, [(4, 'd')])
+        self.assertEqual(result, [('days', 4)])
 
     def test_many_pairs(self):
         time = '4d5w12h54m11s'
         result = tokenize(time)
         self.assertEqual(
             result,
-            [(4, 'd'), (5, 'w'), (12, 'h'), (54, 'm'), (11, 's')]
+            [('days', 4), ('weeks', 5), ('hours', 12), ('minutes', 54), ('seconds', 11)]
         )
