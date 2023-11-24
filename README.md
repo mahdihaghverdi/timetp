@@ -157,10 +157,36 @@ print(tokenize('12d5w4'))
 #  -> '4' needs a letter after it.
 ```
 
-#### Syntax Checkin
+#### Syntax Checking
 ```python
 if letter not in list('dwhms'):
         raise SyntaxError("Time convention letters should be one of d, w, h, m or s.")
 ```
 
 This if statement ensures that use has used one of `d` , `w`, `h`, `m` or `s` letters and not anything else
+
+
+#### State 2
+```python
+tokens.append((letters[letter], int(digits)))
+string = string[i + 1:]
+return tokens + tokenize(string)
+```
+
+Now we have reached the fun part
+
+Here we have our number and letter and we append it to the tokens list
+then, we shrink the argument to pass it to the `tokenize` function it self. Why?
+
+Because all we had done above are done for just one pair, and all the work should be done for all the pairs in the string and a recursive solution fits best here
+
+Here's what happens:
+```
+tokenize('4d5w')
+  |- local tokens: [('days', 4)]
+  |- shrink the arg: arg -> '5w'
+  |- call tokenize('5w')
+       |- local tokens: [('weeks', 5)]
+  |- the call returns
+  |- local tokens: [('days', 4), ('weeks', 5)]
+```
