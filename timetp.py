@@ -1,7 +1,12 @@
-def tokenizer(string):
+from typing import TypeAlias
+
+token: TypeAlias = tuple[int, str]
+
+
+def tokenizer(string: str) -> list[token]:
     """Tokenize and return a namedtuple of the time string to numbers-letters"""
     string = string.lower()
-    tokens = []
+    tokens: list[token] = []
     if not string:
         return tokens
 
@@ -21,12 +26,12 @@ def tokenizer(string):
     except IndexError:
         raise SyntaxError(
             f"A pair of  a number and a letter is needed.\n"
-            f"  -> '{string[i-1]}' needs a letter after it."
+            f"  -> '{string[i - 1]}' needs a letter after it."
         ) from None
 
     if letter not in list('dwhms'):
         raise SyntaxError("Time convention letters should be one of d, w, h, m or s.")
 
     tokens.append((int(digits), letter))
-    string = string[i+1:]
+    string = string[i + 1:]
     return tokens + tokenizer(string)
