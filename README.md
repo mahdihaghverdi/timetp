@@ -112,3 +112,47 @@ print(tokenize('4dw13'))
 ```
 
 You can clearly see that it raises `SyntaxError` when it encounters an invalid pair.
+
+
+#### State 1 and 2
+```python
+digits = ''
+i = 0
+try:
+    while string[i].isdigit():
+        digits += string[i]
+        i += 1
+    letter = string[i]
+except IndexError:
+    raise SyntaxError(
+        f"A pair of  a number and a letter is needed.\n"
+        f"  -> '{string[i - 1]}' needs a letter after it."
+    ) from None
+```
+
+This piece of code acts as the state 1 and one side of state 2 of our DFA
+it starts at the first index of the argument (we are sure that it is a digit), then iterates until we ran out of the sequence of digits
+
+If you look the the DFA, we have two loops. The loop on the state 2 has two sides, one it loops to get all the numbers
+two it says there is no letter after this numbers -> so you have to raise a `SyntaxError`. so the reason of the `try except` block and `raise` statement is this
+
+Let's see how it works
+```python
+print(tokenize('444d'))
+
+# [('days', 444)]
+```
+
+```python
+print(tokenize('444'))
+
+# SyntaxError: A pair of  a number and a letter is needed.
+#  -> '444' needs a letter after it.
+```
+
+```python
+print(tokenize('12d5w4'))
+
+# SyntaxError: A pair of  a number and a letter is needed.
+#  -> '4' needs a letter after it.
+```
