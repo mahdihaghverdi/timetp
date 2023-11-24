@@ -1,3 +1,5 @@
+from collections import defaultdict
+from datetime import timedelta
 from typing import TypeAlias
 
 token: TypeAlias = tuple[str, int]
@@ -47,3 +49,12 @@ def tokenize(string: str) -> list[token]:
     tokens.append((letters[letter], int(digits)))
     string = string[i + 1:]
     return tokens + tokenize(string)
+
+
+def parse(tokens: list[token]):
+    """Return a `timedelta` object out of the tokens"""
+    _dict = defaultdict(int)
+    for type_, number in tokens:
+        _dict[type_] += number
+
+    return timedelta(**_dict)
