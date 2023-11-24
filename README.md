@@ -156,3 +156,11 @@ print(tokenize('12d5w4'))
 # SyntaxError: A pair of  a number and a letter is needed.
 #  -> '4' needs a letter after it.
 ```
+
+#### Syntax Checkin
+```python
+if letter not in list('dwhms'):
+        raise SyntaxError("Time convention letters should be one of d, w, h, m or s.")
+```
+
+This if statement ensures that use has used one of `d` , `w`, `h`, `m` or `s` letters and not anything else
