@@ -40,7 +40,7 @@ def tokenize(string: str) -> list[token]:
     except IndexError:
         raise SyntaxError(
             f"A pair of  a number and a letter is needed.\n"
-            f"  -> '{string[i - 1]}' needs a letter after it."
+            f"  -> {digits!r} needs a letter after it."
         ) from None
 
     if letter not in list('dwhms'):
