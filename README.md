@@ -215,7 +215,7 @@ The reason behind the `for` is this:
 
 Consider an input like this: `4d5d5w12d`, what `tokenize` generates it this:
 ```
-[('days', 4), ('days', 5), ('weeks', 5), ('days', 4)]
+[('days', 4), ('days', 5), ('weeks', 5), ('days', 12)]
 ```
 
 but the right thing is to sum up all days and then pass the kw arg to `timedelta`, this `for` loop does that.
