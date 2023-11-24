@@ -3,7 +3,7 @@ from typing import TypeAlias
 token: TypeAlias = tuple[int, str]
 
 
-def tokenizer(string: str) -> list[token]:
+def tokenize(string: str) -> list[token]:
     """Tokenize and return a namedtuple of the time string to numbers-letters"""
     string = string.lower()
     tokens: list[token] = []
@@ -34,4 +34,4 @@ def tokenizer(string: str) -> list[token]:
 
     tokens.append((int(digits), letter))
     string = string[i + 1:]
-    return tokens + tokenizer(string)
+    return tokens + tokenize(string)
