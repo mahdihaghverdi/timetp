@@ -92,9 +92,9 @@ if string[0].isalpha():
     )
 ```
 
-This `if` statement acts the two ways of the 0 state, it check if the string passed to it starts with a letter or not.
+This `if` statement decides between the two ways of the state 0, it check if the string passed to it starts with a letter or not.
 
-This point is in the programming environment we have raised `SyntaxError` but in DFA we had to write a loop to say this is an error state
+Here, in the programming environment, we have raised `SyntaxError` but in DFA we had to write a loop to say this is an error state
 
 Let's see how it works
 ```python
@@ -130,11 +130,14 @@ except IndexError:
     ) from None
 ```
 
-This piece of code acts as the state 1 and one side of state 2 of our DFA
-it starts at the first index of the argument (we are sure that it is a digit), then iterates until we ran out of the sequence of digits
+This piece of code acts as the state 1 and one side of state 2 of our DFA.
 
-If you look the the DFA, we have two loops. The loop on the state 2 has two sides, one it loops to get all the numbers
-two it says there is no letter after this numbers -> so you have to raise a `SyntaxError`. so the reason of the `try except` block and `raise` statement is this
+it starts at the first index of the argument (we are sure that it is a digit), then iterates until we ran out of the sequence of digits.
+
+If you look at the DFA, we have two loops. The loop on the state 2 has two meanings, one: it loops to get all the numbers
+ and two: it says there is no letter after this numbers -> so you have to raise a `SyntaxError`. 
+
+So this is the reason of the `try except` block and `raise` statement.
 
 Let's see how it works
 ```python
@@ -160,10 +163,10 @@ print(tokenize('12d5w4'))
 #### Syntax Checking
 ```python
 if letter not in list('dwhms'):
-        raise SyntaxError("Time convention letters should be one of d, w, h, m or s.")
+    raise SyntaxError("Time convention letters should be one of d, w, h, m or s.")
 ```
 
-This if statement ensures that use has used one of `d` , `w`, `h`, `m` or `s` letters and not anything else
+This if statement ensures that user has used one of `d` , `w`, `h`, `m` or `s` letters and not anything else
 
 
 #### State 2
@@ -175,10 +178,11 @@ return tokens + tokenize(string)
 
 Now we have reached the fun part
 
-Here we have our number and letter and we append it to the tokens list
-then, we shrink the argument to pass it to the `tokenize` function it self. Why?
+Here we have our number and letter and we append it to the tokens list.
 
-Because all we had done above are done for just one pair, and all the work should be done for all the pairs in the string and a recursive solution fits best here
+Then, we shrink the argument to pass it to the `tokenize` function it self. Why?
+
+Because all we had done above are done for just one pair, and all the work should be done for all the pairs in the string and a recursive solution fits best here.
 
 Here's what happens:
 ```
