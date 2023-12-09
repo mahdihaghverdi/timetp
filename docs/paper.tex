@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+
+\newcommand{\menquote}[1]{\ensuremath{\text{\textquotesingle} #1 \text{\textquotesingle}}}
+
+\newcommand{\md}{\mathrm{d}}
+\newcommand{\mz}{\mathrm{z}}
+\newcommand{\mrp}{\mathrm{p}}
+\begin{document}
+\begin{equation*}
+\Sigma = \{\menquote{0}, \menquote{1}, \menquote{2}, \menquote{3}, \dots, \menquote{9}, \menquote{\mathrm{w}}, \menquote{\mathrm{d}}, \menquote{\mathrm{h}}, \menquote{\mathrm{m}}, \menquote{\mathrm{s}}\}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+\mrp & = \{\menquote{1}, \menquote{2}, \menquote{3}, \dots, \menquote{9}\} \\
+\mz & = \{\menquote{0}\} \\
+\md & = \mrp\cup \mz \\
+\mathrm{l} & = \{\menquote{\mathrm{w}}, \menquote{\md}, \menquote{\mathrm{h}}, \menquote{\mathrm{m}}, \menquote{\mathrm{s}}\} \\
+& \Rightarrow \Sigma = \md \cup \mathrm{l}
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+(\mrp).(\md).(\md)\dots (\md)
+\end{equation*}
+
+\begin{equation*}
+n \geqslant 1
+\end{equation*}
+
+\begin{equation*}
+(\mrp).(\md)^*
+\end{equation*}
+
+\begin{equation*}
+(\menquote{\mathrm{w}} \ \vert \ \menquote{\md} \ \vert \ \menquote{\mathrm{h}} \ \vert \ \menquote{\mathrm{m}} \ \vert \ \menquote{\mathrm{s}})
+\end{equation*}
+
+\begin{equation*}
+(\mrp.\md^*).(\menquote{\mathrm{w}} \ \vert \ \menquote{\md} \ \vert \ \menquote{\mathrm{h}} \ \vert \ \menquote{\mathrm{m}} \ \vert \ \menquote{\mathrm{s}})
+\end{equation*}
+
+\begin{equation*}
+\mathrm{r} = \left[ (\mrp.\md^*).(\menquote{\mathrm{w}} \ \vert \ \menquote{\md} \ \vert \ \menquote{\mathrm{h}} \ \vert \ \menquote{\mathrm{m}} \ \vert \ \menquote{\mathrm{s}})\right]^+
+\end{equation*}
+
+\end{document}
