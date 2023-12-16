@@ -12,7 +12,10 @@ letters = {
 
 
 class Token(NamedTuple):
-    """Represent a token as a typed-namedtuple, like: Token(token='weeks', amount=4)"""
+    """Represent a token as a typed-namedtuple
+
+    like: Token(token='weeks', amount=4)
+    """
     token: Literal['days', 'weeks', 'hours', 'minutes', 'seconds']
     amount: int
 
