@@ -27,6 +27,13 @@ def tokenize(string: str) -> list[Token]:
         return []
 
     tokens: list[Token] = []
+    if string[0] == "0":
+        raise SyntaxError(
+            f"""leading zeros in decimal integer literals are not permitted
+    -> {string!r}
+        ^"""
+        )
+
     if string[0].isalpha():
         raise SyntaxError(
             f"A pair cannot start with a letter.\n"
