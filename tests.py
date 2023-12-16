@@ -1,7 +1,7 @@
 from datetime import timedelta
 from unittest import TestCase
 
-from timetp import tokenize, parse
+from timetp import tokenize, parse, Token
 
 
 class TestTokenizer(TestCase):
@@ -29,14 +29,20 @@ class TestTokenizer(TestCase):
     def test_one_pair(self):
         time = '4d'
         result = tokenize(time)
-        self.assertEqual(result, [('days', 4)])
+        self.assertEqual(result, [Token('days', 4)])
 
     def test_many_pairs(self):
         time = '4d5w12h54m11s'
         result = tokenize(time)
         self.assertEqual(
             result,
-            [('days', 4), ('weeks', 5), ('hours', 12), ('minutes', 54), ('seconds', 11)]
+            [
+                Token('days', 4),
+                Token('weeks', 5),
+                Token('hours', 12),
+                Token('minutes', 54),
+                Token('seconds', 11)
+            ]
         )
 
 
@@ -92,5 +98,5 @@ class TestParser(TestCase):
         self.assertEqual(
             result, timedelta(
                 days=4 + 1, weeks=5 + 8, hours=2 + 4 + 11, minutes=5 + 90 + 43, seconds=110 + 68 + 98
-                )
             )
+        )
