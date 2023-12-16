@@ -58,8 +58,8 @@ def tokenize(string: str) -> list[Token]:
 
 def parse(tokens: list[Token]) -> timedelta:
     """Return a `timedelta` object out of the tokens"""
-    _dict = defaultdict(int)
+    dict_ = defaultdict(int)
     for type_, number in tokens:
-        _dict[type_] += number
+        dict_[type_] += number
 
-    return timedelta(**_dict)
+    return timedelta(**dict_)
