@@ -5,12 +5,16 @@ from timetp import tokenize, parse, Token
 
 
 class TestTokenizer(TestCase):
+    def test_leading_zero_syntax_error(self):
+        with self.assertRaises(SyntaxError):
+            tokenize("012")
+
+        with self.assertRaises(SyntaxError):
+            tokenize("122w012l")
+
     def test_first_letter_isalpha_syntax_error(self):
         with self.assertRaises(SyntaxError):
             tokenize("d4")
-
-        with self.assertRaises(SyntaxError):
-            tokenize("4dw")
 
     def test_number_without_letter(self):
         with self.assertRaises(SyntaxError):
