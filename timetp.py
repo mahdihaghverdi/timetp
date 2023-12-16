@@ -26,7 +26,6 @@ def tokenize(string: str) -> list[Token]:
     if not string:
         return []
 
-    tokens: list[Token] = []
     if string[0] == "0":
         raise SyntaxError(
             f"""leading zeros in decimal integer literals are not permitted
@@ -40,6 +39,7 @@ def tokenize(string: str) -> list[Token]:
             f"  i.e {string[0]!r} needs a number behind it."
         )
 
+    tokens: list[Token] = []
     digits = ""
     i = 0
     try:
