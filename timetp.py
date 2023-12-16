@@ -1,11 +1,14 @@
 from collections import defaultdict
 from datetime import timedelta
-from typing import TypeAlias
-
-token: TypeAlias = tuple[str, int]
+from typing import NamedTuple
 
 
-def tokenize(string: str) -> list[token]:
+class Token(NamedTuple):
+    token: str
+    amount: int
+
+
+def tokenize(string: str) -> list[Token]:
     """Tokenize and return a two tuple of the time string
 
     >>> tokenize('4d5w')
@@ -20,7 +23,7 @@ def tokenize(string: str) -> list[token]:
     }
 
     string = string.lower()
-    tokens: list[token] = []
+    tokens: list[Token] = []
     if not string:
         return tokens
 
@@ -46,12 +49,12 @@ def tokenize(string: str) -> list[token]:
     if letter not in list('dwhms'):
         raise SyntaxError("Time convention letters should be one of d, w, h, m or s.")
 
-    tokens.append((letters[letter], int(digits)))
+    tokens.append(Token(letters[letter], int(digits)))
     string = string[i + 1:]
     return tokens + tokenize(string)
 
 
-def parse(tokens: list[token]):
+def parse(tokens: list[Token]) -> timedelta:
     """Return a `timedelta` object out of the tokens"""
     _dict = defaultdict(int)
     for type_, number in tokens:
