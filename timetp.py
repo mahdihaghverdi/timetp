@@ -2,13 +2,7 @@ from collections import defaultdict
 from datetime import timedelta
 from typing import NamedTuple, Literal
 
-letters = {
-    'd': 'days',
-    'w': 'weeks',
-    'h': 'hours',
-    'm': 'minutes',
-    's': 'seconds'
-}
+letters = {"d": "days", "w": "weeks", "h": "hours", "m": "minutes", "s": "seconds"}
 
 
 class Token(NamedTuple):
@@ -16,7 +10,8 @@ class Token(NamedTuple):
 
     like: Token(token='weeks', amount=4)
     """
-    token: Literal['days', 'weeks', 'hours', 'minutes', 'seconds']
+
+    token: Literal["days", "weeks", "hours", "minutes", "seconds"]
     amount: int
 
 
@@ -38,7 +33,7 @@ def tokenize(string: str) -> list[Token]:
             f"  i.e {string[0]!r} needs a number behind it."
         )
 
-    digits = ''
+    digits = ""
     i = 0
     try:
         while string[i].isdigit():
@@ -52,10 +47,12 @@ def tokenize(string: str) -> list[Token]:
         ) from None
 
     if letter not in letters:
-        raise SyntaxError(f"Time convention letters should be one of {letters.keys()!r}.")
+        raise SyntaxError(
+            f"Time convention letters should be one of {letters.keys()!r}."
+        )
 
     tokens.append(Token(letters[letter], int(digits)))
-    string = string[i + 1:]
+    string = string[i + 1 :]
     return tokens + tokenize(string)
 
 
