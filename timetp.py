@@ -39,7 +39,6 @@ def tokenize(string: str) -> list[Token]:
             f"  i.e {string[0]!r} needs a number behind it."
         )
 
-    tokens: list[Token] = []
     digits = ""
     i = 0
     try:
@@ -58,8 +57,8 @@ def tokenize(string: str) -> list[Token]:
             f"Time convention letters should be one of {letters.keys()!r}."
         )
 
-    tokens.append(Token(letters[letter], int(digits)))
-    string = string[i + 1 :]
+    tokens = [Token(letters[letter], int(digits))]
+    string = string[i + 1:]
     return tokens + tokenize(string)
 
 
