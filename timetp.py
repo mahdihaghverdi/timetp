@@ -54,11 +54,11 @@ def tokenize(string: str) -> list[Token]:
 
     if letter not in letters:
         raise SyntaxError(
-            f"Time convention letters should be one of {letters.keys()!r}."
+            f"Time convention letters should be one of {', '.join(letters.keys())!r}."
         )
 
     tokens = [Token(letters[letter], int(digits))]
-    string = string[i + 1 :]
+    string = string[i + 1:]
     return tokens + tokenize(string)
 
 
