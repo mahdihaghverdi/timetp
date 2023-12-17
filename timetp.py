@@ -42,8 +42,8 @@ def tokenize(string: str) -> list[Token]:
     digits = ""
     i = 0
     try:
-        while string[i].isdigit():
-            digits += string[i]
+        while (digit := string[i]).isdigit():
+            digits += digit
             i += 1
         letter = string[i]
     except IndexError:
@@ -58,7 +58,7 @@ def tokenize(string: str) -> list[Token]:
         )
 
     tokens = [Token(letters[letter], int(digits))]
-    string = string[i + 1:]
+    string = string[i + 1 :]
     return tokens + tokenize(string)
 
 
